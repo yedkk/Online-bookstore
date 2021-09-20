@@ -1,0 +1,91 @@
+{% extends 'base2.html' %}
+{% load static %}
+{% static 'images/books' as imgdir %}
+{% static 'images/home' as img2 %}
+
+{% block content %}
+
+<div class="page-content-wrapper ">
+
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="page-title-box">
+                    <div class="row align-items-center">
+                        <div class="col-md-12">
+                            {% if messages %}
+                            <ul class="messages">
+                                {% for message in messages %}
+                                <H3 style="color:red" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</h3>
+                                {% endfor %}
+                            </ul>
+                            {% endif %}
+                        </div>
+                        
+
+                        <!-- end col -->
+                    </div>
+                    <!-- end row -->
+                </div>
+                <!-- end page-title-box -->
+            </div>
+        </div>
+        <!-- end page title -->
+
+
+ <div class="row">
+  
+          
+
+          <div class="col-12">
+
+           <div class="card">
+            <div class="col-md-12">
+              <p class="page-title m-0">To View Personal Recommendations, Login First</p>
+              </div>
+            <!-- /.card-header -->
+         <div class="card-body p-0">
+            <!-- .table-responsive -->
+    
+           
+            <div class="modal-body">
+
+            <form role="form" method="post" action="getrecommendations"  enctype="multipart/form-data" >{% csrf_token %}
+                <div class="box-body"> 
+                  <div class="form-group row">
+                    <label  class="col-sm-4 col-form-label">Your Registered Email:</label>
+                      <div class="col-sm-12">
+                          <input type="email" autocomplete="off" class="form-control"  name="email" placeholder="Email used to create your account" required>
+                      </div>
+                   </div>
+
+
+                </div>
+                <!-- /.card-body -->
+                <div class="modal-footer">
+                   
+                    <div class="col text-center">
+                      <button type="submit" class="btn btn-primary"><i class="fas fa-file-pdf"> Proceed    </i></button>
+                    </div>
+
+
+                    
+                </div>
+            </form>    
+          </div>
+          </div>
+        </div>
+        
+      
+
+    </div>
+          <!-- /.col -->
+ </div>
+        
+
+    </div><!-- container fluid -->
+
+</div> <!-- Page content Wrapper -->
+                        
+{% endblock content %}

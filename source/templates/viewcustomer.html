@@ -1,0 +1,151 @@
+{% extends 'base2.html' %}
+{% load static %}
+{% static 'images/books' as imgdir %}
+{% static 'images/home' as img2 %}
+
+{% block content %}
+
+<div class="page-content-wrapper ">
+
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="page-title-box">
+                    <div class="row align-items-center">
+                        <div class="col-md-12">
+                        <h4 class="page-title m-0">{{customer.name}}</h4>
+                        </div>
+                        
+
+                        <!-- end col -->
+                    </div>
+                    <!-- end row -->
+                </div>
+                <!-- end page-title-box -->
+            </div>
+        </div>
+        <!-- end page title -->
+
+
+ <div class="row">
+  
+          <div class="col-6">
+            
+            <div class="card">
+                
+              <div class="col-md-12">
+                <p class="page-title m-0">COMMENTS</p>
+                </div>
+                <!-- /.card-header -->
+             <div class="card-body p-0">
+                <!-- .table-responsive -->
+        
+                <div class="table-responsive">
+                    <table class="table m-0">
+                      <thead>
+                      <tr>
+                        <th>Book</th>
+                        <th>Comment</th>    
+                        <th>Rating</th> 
+                        <th></th>                            
+                      </tr>
+                      </thead>
+                      <tbody>
+                    
+
+                {% for comment in comments%}
+                    <tr>
+                      
+                        <td><span class="badge badge-success">{{comment.title}}</span></td>
+                        <td><span class="badge badge-success">{{comment.comment}}</span></td>
+                        <td><span class="badge badge-warning">{{comment.rating}}</span></td>
+                        
+                    </tr>
+                    
+                {% endfor %}    
+
+
+                    
+                      </tbody>
+                    </table>
+                  </div>
+                  <!-- /.table-responsive -->
+                </div>
+                
+            </div>
+            <!-- /.card -->
+          </div>
+
+          <div class="col-6">
+
+           <div class="card">
+            <div class="col-md-12">
+              <p class="page-title m-0">TRUSTWORTHY RATING: Rate this Customer</p>
+              </div>
+            <!-- /.card-header -->
+         <div class="card-body p-0">
+            <!-- .table-responsive -->
+    
+           
+            <div class="modal-body">
+
+            <form role="form" method="post" action="savetrustedrating"  enctype="multipart/form-data" >{% csrf_token %}
+               
+                <div class="box-body"> 
+                   
+                    
+
+
+                    <div class="form-group row">
+                      <label for="category_id" class="col-sm-4 col-form-label">Rating</label>
+                      <div class="col-sm-7">
+                          <select class="form-control select2" autocomplete="off" name="rating" style="width: 100%;"   required>
+                              <option value="">-----------Select Option---------------</option>
+                              
+                               <option value="Trusted">Trusted</option>
+                               <option value="Non Trusted">Non Trusted</option>
+                              
+                              
+                          </select>
+                      </div>
+                  </div>
+
+
+                  <div class="form-group row">
+                    <label  class="col-sm-4 col-form-label">Your Registered Email:</label>
+                      <div class="col-sm-7">
+                          <input type="email" autocomplete="off" class="form-control"  name="email" placeholder="Email used to create your account" required>
+                      </div>
+                  </div>
+
+
+                </div>
+                <!-- /.card-body -->
+                <div class="modal-footer">
+                    <input type="hidden"  name="bookid" value="{{book.bookID}}">
+                    <input type="hidden"  name="customerid" value="{{customer.customer_id}}">
+                    <div class="col text-center">
+                      <button type="submit" class="btn btn-primary"><i class="fas fa-file-pdf"> Place Rating    </i></button>
+                    </div>
+
+
+                    
+                </div>
+            </form>    
+          </div>
+          </div>
+        </div>
+        
+      
+
+    </div>
+          <!-- /.col -->
+ </div>
+        
+
+    </div><!-- container fluid -->
+
+</div> <!-- Page content Wrapper -->
+                        
+{% endblock content %}

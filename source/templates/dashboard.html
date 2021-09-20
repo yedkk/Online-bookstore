@@ -1,0 +1,172 @@
+{% extends 'base.html' %}
+{% load mathfilters %}
+{% block content %}
+                        
+                  
+<div class="page-content-wrapper ">
+
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="page-title-box">
+                    <div class="row align-items-center">
+                        <div class="col-md-8">
+                            <h4 class="page-title m-0">Dashboard This Year</h4>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="float-right d-none d-md-block">
+                                <div class="dropdown">
+                                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="ti-settings mr-1"></i> Settings
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated">
+                                        <a class="dropdown-item" href="#">Add User</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="#">Manage Books</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="#">View Reports</a>
+                                        <div class="dropdown-divider"></div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end col -->
+                    </div>
+                    <!-- end row -->
+                </div>
+                <!-- end page-title-box -->
+            </div>
+        </div> 
+        <!-- end page title -->
+
+        <div class="row">
+            <div class="col-xl-3 col-md-6">
+                <div class="card bg-primary mini-stat text-white">
+                    <div class="p-3 mini-stat-desc">
+                        <div class="clearfix">
+                            <h6 class="text-uppercase mt-0 float-left text-white-50">Orders</h6>
+                            <h4 class="mb-3 mt-0 float-right">{{totalorders}}</h4>
+                        </div>
+                    
+                        
+                    </div>
+                    <div class="p-3">
+                        <div class="float-right">
+                            <a href="#" class="text-white-50"><i class="mdi mdi-cube-outline h5"></i></a>
+                        </div>
+                        <p class="font-14 m-0">All time</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-md-6">
+                <div class="card bg-info mini-stat text-white">
+                    <div class="p-3 mini-stat-desc">
+                        <div class="clearfix">
+                            <h6 class="text-uppercase mt-0 float-left text-white-50">Revenue</h6>
+                            <h4 class="mb-3 mt-0 float-right">${{totalrevenue}}</h4>
+                        </div>
+                        
+                    </div>
+                    <div class="p-3">
+                        <div class="float-right">
+                            <a href="#" class="text-white-50"><i class="mdi mdi-buffer h5"></i></a>
+                        </div>
+                        <p class="font-14 m-0">All Time</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+                <div class="card bg-pink mini-stat text-white">
+                    <div class="p-3 mini-stat-desc">
+                        <div class="clearfix">
+                            <h6 class="text-uppercase mt-0 float-left text-white-50">Customers</h6>
+                            <h4 class="mb-3 mt-0 float-right">{{customers}}</h4>
+                        </div>
+                       
+                    </div>
+                    <div class="p-3">
+                        <div class="float-right">
+                            <a href="#" class="text-white-50"><i class="mdi mdi-tag-text-outline h5"></i></a>
+                        </div>
+                        <p class="font-14 m-0">Total Registered</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-md-6">
+                <div class="card bg-success mini-stat text-white">
+                    <div class="p-3 mini-stat-desc">
+                        <div class="clearfix">
+                            <h6 class="text-uppercase mt-0 float-left text-white-50">Product Sold</h6>
+                            <h4 class="mb-3 mt-0 float-right">{{totalproducts}}</h4>
+                        </div>
+                       
+                    </div>
+                    <div class="p-3">
+                        <div class="float-right">
+                            <a href="#" class="text-white-50"><i class="mdi mdi-briefcase-check h5"></i></a>
+                        </div>
+                        <p class="font-14 m-0">All Orders</p>
+                    </div>
+                </div>
+            </div>
+        </div>  
+       
+
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="mt-0 header-title mb-4">Latest Orders</h4>
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Order ID.</th>
+                                        <th scope="col">Date</th>
+                                        <th scope="col">Customer</th>
+                                        <th scope="col">Book</th>
+                                        <th scope="col">Quantity</th>
+                                        <th scope="col">Total</th>
+                                        <th scope="col">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                    
+                    {% for order in orders %} 
+                        
+                                    <tr>
+                                        <th scope="row">#{{order.order_id}}</th>
+                                        <td>{{order.order_date}}</td>
+                                        <td>{{order.name}}</td>
+                                        <td>{{order.title}}</td>
+                                       
+                                        <td>{{order.quantity}}</td>
+                                        <td> {{ order.quantity|mul:order.price }}</td>
+                                        <td><span class="badge badge-warning">{{order.order_status}}</span> </td>
+                                        
+                                        
+                                    </tr>
+                    {% endfor %}                
+                                    
+                                    
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+       <!-- end row -->
+
+    </div><!-- container fluid -->
+
+</div> <!-- Page content Wrapper -->
+
+{% endblock content %}

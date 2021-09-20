@@ -1,0 +1,74 @@
+{% extends 'shop.html' %}
+{% block content %}
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="left-sidebar">
+                  
+                    <!--/category-products-->
+                
+                    <div class="brands_products"><!--brands_products-->
+                        <h2>Top Sellers</h2>
+                        <div class="brands-name">
+                            <ul class="nav nav-pills nav-stacked">
+                                {% for author in authors %}
+                                <li><a href="#"> <span class="pull-right">({{author.qnty}})</span>{{author.title}}</a></li>
+                                {% endfor %} 
+                            </ul>
+                        </div>
+                    </div><!--/top authors-->
+                    
+                    
+                    
+                   
+                
+                </div>
+            </div>
+            
+            <div class="col-sm-9 padding-right">
+                <div class="features_items"><!--features_items-->
+                    <h2 class="title text-center">Featured Books</h2>
+                    {% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <H3 style="color:purple" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</h3>
+    {% endfor %}
+</ul>
+{% endif %}
+
+
+                {% for book in books %}
+                    <div class="col-sm-4">
+                        <div class="product-image-wrapper">
+                            <div class="single-products">
+                                    <div class="productinfo text-center">
+                                        <img src="{{imgdir}}/{{book.bookID}}.jpg" alt="" />
+                                        <h2>${{book.price}}</h2>
+                                        <p>{{book.title}}</p>
+                                        <a href="openbook?bookid={{book.bookID}}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>View Details</a>
+                                    </div>
+                                    <div class="product-overlay">
+                                        <div class="overlay-content">
+                                            <h2>${{book.price}}</h2>
+                                            <p>{{book.title}}</p>
+                                            <a href="openbook?bookid={{book.bookID}}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>View Details</a>
+                                        </div>
+                                    </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                {% endfor %}    
+                    
+                </div><!--features_items-->
+                
+                
+               
+                
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

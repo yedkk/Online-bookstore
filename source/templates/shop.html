@@ -1,0 +1,145 @@
+{% load static %}
+{% static 'images/books' as imgdir %}
+{% static 'images/home' as img2 %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>YuanBooks</title>
+    <link href="{% static 'assets/shop/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/shop/css/font-awesome.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/shop/css/prettyPhoto.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/shop/css/price-range.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/shop/css/animate.css' %}" rel="stylesheet">
+	<link href="{% static 'assets/shop/css/main.css' %}" rel="stylesheet">
+	<link href="{% static 'assets/shop/css/responsive.css' %}" rel="stylesheet">
+
+	 <!-- DataTables -->
+	 <link href="{% static 'plugins/datatables/dataTables.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />
+
+  
+</head><!--/head-->
+
+<body>
+	<header id="header"><!--header-->
+		<div class="header_top"><!--header_top-->
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="contactinfo">
+							<ul class="nav nav-pills">
+								<li><a href="#"><i class="fa fa-phone"></i> +1 800 800 800</a></li>
+								<li><a href="#"><i class="fa fa-envelope"></i> info@yuanbooks.com</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="social-icons pull-right">
+							<ul class="nav navbar-nav">
+								
+								
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!--/header_top-->
+		
+		<div class="header-middle"><!--header-middle-->
+			<div class="container">
+				<div class="row">
+					<div class="col-md-4 clearfix">
+						<div class="logo pull-left">
+							<a href="index.html"><img src="{% static 'images/home/logo.png' %}" alt="" /></a>
+						</div>
+						
+					</div>
+					<div class="col-md-8 clearfix">
+						<div class="shop-menu clearfix pull-right">
+							<ul class="nav navbar-nav">
+								<li><a href="recommendations"><i class="fa fa-book"></i> Recommendations </a></li>
+								<li><a href="degreesearch"><i class="fa fa-crosshairs"></i> Degree Search</a></li>
+								<li><a href="viewcustomers"><i class="fa fa-shopping-cart"></i> View Customers</a></li>
+								<li><a href="login"><i class="fa fa-lock"></i> Login|Register</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!--/header-middle-->
+	
+		<div class="header-bottom"><!--header-bottom-->
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+								<span class="sr-only">Toggle navigation</span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							</button>
+						</div>
+						<div class="mainmenu pull-left">
+							<ul class="nav navbar-nav collapse navbar-collapse">
+								<li><a href="index.html" class="active">Home</a></li>
+							</ul>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</div><!--/header-bottom-->
+	</header><!--/header-->
+	
+	
+	{% block content %}
+               
+    {% endblock content %}
+	
+	
+	<footer id="footer"><!--Footer-->
+		<div class="footer-bottom">
+			<div class="container">
+				<div class="row">
+					<p class="pull-left">YuanBooks.  BookStore Prototype  @2021</p>
+				</div>
+			</div>
+		</div>
+	</footer><!--/Footer-->
+	
+
+  
+    <script src="{% static 'assets/shop/js/jquery.js' %}"></script>
+	<script src="{% static 'assets/shop/js/bootstrap.min.js' %}"></script>
+	<script src="{% static 'assets/shop/js/jquery.scrollUp.min.js' %}"></script>
+	<script src="{% static 'assets/shop/js/price-range.js' %}"></script>
+    <script src="{% static 'assets/shop/js/jquery.prettyPhoto.js' %}"></script>
+    <script src="{% static 'assets/shop/js/main.js' %}"></script>
+
+	<!-- Datatable init js -->
+	<script src="{% static 'assets/pages/datatables.init.js' %}"></script>  
+
+
+
+<script>	
+		$(document).ready(function() {
+			$('#datatable').DataTable();
+
+			//Buttons examples
+			var table = $('#datatable-buttons').DataTable({
+				lengthChange: false,
+				buttons: ['copy', 'excel', 'pdf', 'colvis']
+			});
+
+			table.buttons().container()
+				.appendTo('#datatable-buttons_wrapper .col-md-6:eq(0)');
+		} );
+
+</script>
+
+</body>
+</html>

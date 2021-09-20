@@ -1,0 +1,107 @@
+{% extends 'base2.html' %}
+{% load static %}
+{% static 'images/books' as imgdir %}
+{% static 'images/home' as img2 %}
+
+{% block content %}
+
+<div class="page-content-wrapper ">
+
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="page-title-box">
+                    <div class="row align-items-center">
+                        <div class="col-md-8">
+                            <h4 class="page-title m-0">Recommended Books: Based on Books bought by other customers</h4>
+                        </div>
+                       
+                        <!-- end col -->
+                    </div>
+                    <!-- end row -->
+                </div>
+                <!-- end page-title-box -->
+            </div>
+        </div> 
+        <!-- end page title -->
+
+
+        <div class="row">
+  
+          
+
+          <div class="col-12">
+
+            <div class="card m-b-30">
+                <!-- /.card-header -->
+                <div class="card-body p-0">
+                    <!-- .table-responsive -->
+            
+
+                    <table id="datatable" class="table table-striped table-bordered dt-responsive" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                       
+                                   <thead>
+                            <tr>
+                                
+                                <th style="width:30%">Title</th>
+                                <th>ISBN</th>
+                                <th style="width:15%">Author</th>
+                                <th>Publisher</th>
+                                <th>Language</th>
+                                <th ></th>
+                            </tr>
+                            </thead>
+
+
+                            <tbody>
+                        {% for book in books %}
+                       
+                            <tr>
+                               
+                                <td style="width:20" >{{book.title}}</td>
+                                <td>{{book.isbn}}</td>
+                                <td>{{book.author_name}}</td>
+                                <td>{{book.publisher_name}}</td>
+                                <td>{{book.language_code}}</td>
+                                
+                                <td> 
+                                    <a class="btn btn-primary btn-sm" href="openbook?bookid={{book.bookID}}"><i class="fas fa-book" title="Add Stock">View Details</i></a>
+                                </td>
+                            </tr>
+                            
+                        {% endfor %}    
+                         
+                            
+                            </tbody>
+                        </table>
+                    
+                </div>
+            
+            </div>
+        
+      
+
+    </div>
+          <!-- /.col -->
+ </div>
+
+
+
+ 
+
+
+
+
+
+
+
+
+ 
+        
+
+    </div><!-- container fluid -->
+
+</div> <!-- Page content Wrapper -->
+                        
+{% endblock content %}

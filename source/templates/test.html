@@ -1,0 +1,14 @@
+<html>
+
+{% if status %}
+    <h1> {{status}}</h1> 
+    {% for usr in user %}
+    <h1> {{usr.email}}</h1>
+    <h1> {{usr.name}}</h1>
+    {% endfor %}  
+{% else %}
+    <h1> Not True</h1> 
+{% endif %}
+
+
+</html>

@@ -1,0 +1,293 @@
+{% extends 'base2.html' %}
+{% load static %}
+{% static 'images/books' as imgdir %}
+{% static 'images/home' as img2 %}
+
+{% block content %}
+
+<div class="page-content-wrapper ">
+
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="page-title-box">
+                    <div class="row align-items-center">
+                        <div class="col-md-12">
+                        <h4 class="page-title m-0">{{book.title}}</h4>
+                        </div>
+                        
+
+                        <!-- end col -->
+                    </div>
+                    <!-- end row -->
+                </div>
+                <!-- end page-title-box -->
+            </div>
+        </div>
+        <!-- end page title -->
+
+
+        <div class="row">
+  
+          <div class="col-4">
+            
+            <div class="card">
+                <img src="static/images/books/{{book.bookID}}.jpg" alt="" width="200" height="200" class="centre" />
+
+                <!-- /.card-header -->
+             <div class="card-body p-0">
+                <!-- .table-responsive -->
+        
+                <div class="table-responsive">
+                    <table class="table m-0">
+                      <thead>
+                      <tr>
+                        <th></th>
+                        <th></th>                            
+                      </tr>
+                      </thead>
+                      <tbody>
+                       
+                    <tr>
+                        <td>Language</td>
+                        
+                        <td><span class="badge badge-success">{{book.language_code}}</span></td>
+                    </tr>
+                    
+                    <tr>
+                        <td><a>Pages</a></td>
+                        <td><span class="badge badge-warning">{{book.num_pages}}</span></td>
+                    </tr>
+
+                    <tr>
+                      <td><a>Availability</a></td>
+
+                      {% if book.stocklevel > 0 %}
+                      <td><span class="badge badge-success">In Stock</span></td>
+                      {% else %}
+                      <td><span class="badge badge-danger">Out of Stock</span></td>
+                      {% endif %}
+                   </tr>
+
+                  <tr>
+                    <td><a>Average Rating</a></td>
+                    <td><span class="badge badge-warning">{{book.average_rating}}</span> 
+                      
+                    </td>
+                  </tr>
+
+
+                    
+                      </tbody>
+                    </table>
+                  </div>
+                  <!-- /.table-responsive -->
+                </div>
+                
+            </div>
+            <!-- /.card -->
+          </div>
+
+          <div class="col-8">
+
+           <div class="card">
+            <!-- /.card-header -->
+         <div class="card-body p-0">
+            <!-- .table-responsive -->
+    
+            <div class="table-responsive">
+                <table class="table m-0">
+                  <thead>
+                  <tr>
+                    <th></th>
+                    <th></th>                            
+                  </tr>
+                  </thead>
+                  <tbody>
+                   
+                <tr>
+                    <td><a>Title</a></td>
+                    <td><span class="badge badge-success">{{book.title}}</span></td>
+                    
+                </tr>
+                <tr>
+                    <td><a>Author</a></td>
+                    <td><span class="badge badge-warning">{{author.author_name}}</span></td>
+                  
+                </tr>
+               
+                <tr>
+                    <td><a>Publisher</a></td>
+                    <td><span class="badge badge-warning">{{book.publisher_id.publisher_name}}</span></td>
+                 
+                    
+                </tr>
+                <tr>
+                    
+                    
+                </tr>
+              
+                  
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.table-responsive -->
+            </div>
+            <div class="modal-body">
+            <form role="form" method="post" action="saveorder"  enctype="multipart/form-data" >{% csrf_token %}
+               
+                <div class="box-body"> 
+                    <div class="form-group row">
+                      <label for="asset_category" class="col-sm-2 col-form-label">Quantity To order:</label>
+                        <div class="col-sm-10">
+                          
+                            <input type="number" autocomplete="off" class="form-control"  name="quantity" required>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.card-body -->
+                <div class="modal-footer">
+                    <input type="hidden"  name="bookid" value="{{book.bookID}}">
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-file-pdf"> Place Order    </i></button>
+                </div>
+            </form>    
+
+          </div>
+        </div>
+        
+      
+
+    </div>
+          <!-- /.col -->
+ </div>
+
+
+
+ 
+
+
+
+
+
+
+
+
+ <div class="row">
+  
+          <div class="col-6">
+            
+            <div class="card">
+                
+              <div class="col-md-12">
+                <p class="page-title m-0">COMMENTS</p>
+                </div>
+                <!-- /.card-header -->
+             <div class="card-body p-0">
+                <!-- .table-responsive -->
+        
+                <div class="table-responsive">
+                    <table class="table m-0">
+                      <thead>
+                      <tr>
+                        <th>Customer</th>
+                        <th>Comment</th>    
+                        <th>Rating</th> 
+                        <th></th>                            
+                      </tr>
+                      </thead>
+                      <tbody>
+                    
+
+                {% for comment in comments%}
+                    <tr>
+                      
+                        <td><span class="badge badge-success">{{comment.name}}</span></td>
+                        <td><span class="badge badge-success">{{comment.comment}}</span></td>
+                        <td><span class="badge badge-warning">{{comment.rating}}</span></td>
+                        <td><a href="" class="btn btn-info bt-sm"><i ></i>Rate this comment</a></td>
+                    </tr>
+                    
+                {% endfor %}    
+
+
+                    
+                      </tbody>
+                    </table>
+                  </div>
+                  <!-- /.table-responsive -->
+                </div>
+                
+            </div>
+            <!-- /.card -->
+          </div>
+
+          <div class="col-6">
+
+           <div class="card">
+            <div class="col-md-12">
+              <p class="page-title m-0">COMMENT & RATE THIS BOOK</p>
+              </div>
+            <!-- /.card-header -->
+         <div class="card-body p-0">
+            <!-- .table-responsive -->
+    
+           
+            <div class="modal-body">
+
+            <form role="form" method="post" action="savecomment"  enctype="multipart/form-data" >{% csrf_token %}
+               
+                <div class="box-body"> 
+                    <div class="form-group row">
+                      <label  class="col-sm-3 col-form-label">Comment:</label>
+                        <div class="col-sm-7">
+                            <input type="text" autocomplete="off" class="form-control"  name="comment" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <label for="category_id" class="col-sm-3 col-form-label">Rating</label>
+                      <div class="col-sm-7">
+                          <select class="form-control select2" autocomplete="off" name="rating" style="width: 100%;"   required>
+                              <option value="">-----------Select Rate---------------</option>
+                              
+                               <option value="1">1</option>
+                               <option value="2">2</option>
+                               <option value="3">3</option>
+                               <option value="4">4</option>
+                               <option value="5">5</option>
+                              
+                          </select>
+                      </div>
+                  </div>
+
+
+                </div>
+                <!-- /.card-body -->
+                <div class="modal-footer">
+                    <input type="hidden"  name="bookid" value="{{book.bookID}}">
+                    <input type="hidden"  name="customerid" value="2">
+                    <div class="col text-center">
+                      <button type="submit" class="btn btn-primary"><i class="fas fa-file-pdf"> Place Order    </i></button>
+                    </div>
+
+
+                    
+                </div>
+            </form>    
+          </div>
+          </div>
+        </div>
+        
+      
+
+    </div>
+          <!-- /.col -->
+ </div>
+        
+
+    </div><!-- container fluid -->
+
+</div> <!-- Page content Wrapper -->
+                        
+{% endblock content %}
